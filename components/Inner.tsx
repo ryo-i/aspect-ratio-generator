@@ -42,6 +42,9 @@ const Example = styled.div`
     p {
       margin: 0 0 10px;
     }
+    img {
+      object-fit: cover;
+    }
   }
 `;
 
@@ -123,7 +126,7 @@ function Inner() {
       <Example>
         <section>
           <h2>スクエア(1:1)</h2>
-          <p>CSS {'{'} width: 100%; height: 100%; {'}'}</p>
+          <p>img {'{'} width: 100%; height: 100%; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={sectionStyle}/></figure>
         </section>
       </Example>
