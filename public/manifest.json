@@ -1,6 +1,6 @@
 {
-  "short_name": "next-started",
-  "name": "next-app-started",
+  "short_name": "aspect-ratio-generator",
+  "name": "アスペクト比ジェネレーター",
   "icons": [
     {
       "src": "favicon.ico",
