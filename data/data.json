@@ -3,8 +3,8 @@
         "url": "https://next-app-started.vercel.app/"
     },
     "header": {
-        "title":"Nextアプリスターターキット",
-        "text": "Next.js + TypeScript + CSS in JS環境"
+        "title":"アスペクト比ジェネレーター",
+        "text": "黄金比、白銀比、デジカメサイズなどの見え方とCSS設定値を調べることができます。"
     },
     "main": {
         "title":"メインページです",

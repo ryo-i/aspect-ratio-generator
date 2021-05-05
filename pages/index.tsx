@@ -7,8 +7,8 @@ import Data from '../data/data.json';
 
 const headerTitle = Data.header.title;
 const headerText = Data.header.text;
-const pageTitle = Data.main.title;
-const pageText = Data.main.text;
+const pageTitle = Data.header.title;
+const pageText = 'アスペクト比の設定を変更すると下の画像とCSS設定値が変化します';
 
 
 function Home() {
