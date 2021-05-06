@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Data from '../data/data.json';
 
 
 // Style
@@ -51,9 +52,8 @@ const Example = styled.div`
 
 // Component
 function Inner() {
-  const [lineLength, setLineLength] = useState(35);
-  const [lineHeight, setLineHeight] = useState(1.75);
-  const [jumpRate, setJumpRate] = useState(2);
+  const [imageSize, setImageSize] = useState(Data.inner.size);
+  console.log('imageSize->' + imageSize);
 
 
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,32 +61,13 @@ function Inner() {
     return changeValue;
   };
 
-  const ChangeLineLength = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     const changeValue = useChangeValue(e);
-    setLineLength(changeValue);
+    setImageSize(changeValue);
   };
 
-  const ChangeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changeValue = useChangeValue(e);
-    setLineHeight(changeValue);
-  };
-
-  const ChangeJumpRate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changeValue = useChangeValue(e);
-    setJumpRate(changeValue);
-  };
-
-
-  const pStyle = {
-    lineHeight: lineHeight + 'em'
-  };
-
-  const sectionStyle = {
-    maxWidth: lineLength + 'em'
-  };
-
-  const h2Style = {
-    fontSize: jumpRate + 'em'
+  const imgStyle = {
+    width: imageSize + 'px'
   };
 
 
@@ -105,10 +86,10 @@ function Inner() {
             サイズ
           </dt>
           <dd>
-            <label><input type="radio" name="size" value="相対値" defaultChecked />相対値(%)</label>
-            <label><input type="radio" name="size" value="絶対値" />絶対値(px)</label>
-            <div>幅：<input type="number" className="widthValue" defaultValue="100" min="1"　max="9999"　disabled /><span className="unit">%</span>、
-            高さ：<span className="heightValue">100</span><span className="unit">%</span></div>
+            <label><input type="radio" name="size" value="相対値" />相対値(%)</label>
+            <label><input type="radio" name="size" value="絶対値" defaultChecked />絶対値(px)</label>
+            <div>幅：<input type="number" className="widthValue" min="10"　max="2000" defaultValue={imageSize} onChange={ChangeImageSize} /><span className="unit">%</span>、
+            高さ：<span className="heightValue">100</span><span className="unit">px</span></div>
           </dd>
           <dt>
           主なアスペクト比
@@ -126,8 +107,8 @@ function Inner() {
       <Example>
         <section>
           <h2>スクエア(1:1)</h2>
-          <p>img {'{'} width: 100%; height: 100%; object-fit: cover; {'}'}</p>
-          <figure><img src="/kaidan.jpg"  style={sectionStyle}/></figure>
+          <p>img {'{'} width: {imageSize}px; height: 100px; object-fit: cover; {'}'}</p>
+          <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
         </section>
       </Example>
     </div>
