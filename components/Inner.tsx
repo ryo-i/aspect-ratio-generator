@@ -88,7 +88,7 @@ function Inner() {
           <dd>
             <label><input type="radio" name="size" value="相対値" />相対値(%)</label>
             <label><input type="radio" name="size" value="絶対値" defaultChecked />絶対値(px)</label>
-            <div>幅：<input type="number" className="widthValue" min="10"　max="2000" defaultValue={imageSize} onChange={ChangeImageSize} /><span className="unit">%</span>、
+            <div>幅：<input type="number" className="widthValue" min="10"　max="2000" defaultValue={imageSize} onChange={ChangeImageSize} /><span className="unit">px</span>、
             高さ：<span className="heightValue">100</span><span className="unit">px</span></div>
           </dd>
           <dt>
