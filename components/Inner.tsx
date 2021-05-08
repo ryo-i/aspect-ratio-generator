@@ -35,6 +35,7 @@ const Example = styled.div`
   section {
     margin: 30px;
     line-height: 1.75em;
+    width: calc(100vw - 60px);
     h2 {
       color: #000;
       line-height: 1.25em;
@@ -42,6 +43,9 @@ const Example = styled.div`
     }
     p {
       margin: 0 0 10px;
+    }
+    figure {
+      overflow: scroll;
     }
     img {
       object-fit: cover;
