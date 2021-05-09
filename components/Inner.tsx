@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Data from '../data/data.json';
 
@@ -23,7 +23,7 @@ const Setting = styled.div`
     }
   }
   .widthValue {
-    width: 4em;
+
   }
 `;
 
@@ -35,7 +35,7 @@ const Example = styled.div`
   section {
     margin: 30px;
     line-height: 1.75em;
-    width: calc(100vw - 60px);
+    /* width: calc(100vw - 120px); */
     h2 {
       color: #000;
       line-height: 1.25em;
@@ -56,9 +56,18 @@ const Example = styled.div`
 
 // Component
 function Inner() {
-  const [imageSize, setImageSize] = useState(Data.inner.size);
-  console.log('imageSize->' + imageSize);
 
+  const [imageSize, setImageSize] = useState(Data.inner.size);
+  const [maxSize, setMaxSize] = useState(Data.inner.max);
+
+  useEffect(() => {
+    const windowWidth = document.body.clientWidth;
+    if (900 > windowWidth) {
+      setMaxSize(windowWidth - 120);
+      setImageSize(windowWidth - 120);
+    }
+    console.log('windowWidth->' + windowWidth);
+  }, []);
 
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue: number = Number(e.target.value);
@@ -66,13 +75,14 @@ function Inner() {
   };
 
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changeValue = useChangeValue(e);
+    let changeValue = useChangeValue(e);
     setImageSize(changeValue);
   };
 
   const imgStyle = {
-    width: imageSize + 'px'
-  };
+    width: imageSize + 'px',
+    height: imageSize + 'px'
+  }
 
 
   return (
@@ -92,8 +102,9 @@ function Inner() {
           <dd>
             <label><input type="radio" name="size" value="相対値" />相対値(%)</label>
             <label><input type="radio" name="size" value="絶対値" defaultChecked />絶対値(px)</label>
-            <div>幅：<input type="number" className="widthValue" min="10"　max="2000" defaultValue={imageSize} onChange={ChangeImageSize} /><span className="unit">px</span>、
-            高さ：<span className="heightValue">100</span><span className="unit">px</span></div>
+            <input type="range" className="widthValue" min="10"　max={maxSize} defaultValue={imageSize} onChange={ChangeImageSize} />
+            <div>幅：{imageSize}<span className="unit">px</span>、
+            高さ：<span className="heightValue">{imageSize}</span><span className="unit">px</span></div>
           </dd>
           <dt>
           主なアスペクト比
@@ -111,7 +122,7 @@ function Inner() {
       <Example>
         <section>
           <h2>スクエア(1:1)</h2>
-          <p>img {'{'} width: {imageSize}px; height: 100px; object-fit: cover; {'}'}</p>
+          <p>img {'{'} width: {imageSize}px; height: {imageSize}px; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
         </section>
       </Example>

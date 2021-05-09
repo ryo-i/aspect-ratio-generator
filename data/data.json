@@ -8,6 +8,7 @@
     },
     "inner": {
         "size": 600,
+        "max": 1000,
         "percent": 100
         },
     "footer": {
