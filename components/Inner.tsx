@@ -56,9 +56,10 @@ const Example = styled.div`
 
 // Component
 function Inner() {
-
-  const [imageSize, setImageSize] = useState(Data.inner.size);
-  const [maxSize, setMaxSize] = useState(Data.inner.max);
+  const data = Data.inner;
+  const [step, setStep] = useState(data.step);
+  const [imageSize, setImageSize] = useState(data.size);
+  const [maxSize, setMaxSize] = useState(data.max);
 
   useEffect(() => {
     const windowWidth = document.body.clientWidth;
@@ -72,6 +73,11 @@ function Inner() {
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue: number = Number(e.target.value);
     return changeValue;
+  };
+
+  const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let changeValue = useChangeValue(e);
+    setStep(changeValue);
   };
 
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,10 +114,18 @@ function Inner() {
             <label><input type="radio" name="direction" value="縦向き" />縦向き</label>
           </dd>
           <dt>
+            ステップ
+          </dt>
+          <dd>
+            <label><input type="radio" name="step" value="1" onChange={changeStep} />1px</label>
+            <label><input type="radio" name="step" value="5" onChange={changeStep} />5px</label>
+            <label><input type="radio" name="step" value="10" defaultChecked onChange={changeStep} />10px</label>
+          </dd>
+          <dt>
             サイズ
           </dt>
           <dd>
-            <input type="range" className="widthValue" min="10"　max={maxSize} step="5" defaultValue={imageSize} onChange={ChangeImageSize} />
+            <input type="range" className="widthValue" min="10"　max={maxSize} step={step} defaultValue={imageSize} onChange={ChangeImageSize} />
             <p>幅：{imageSize}px、高さ：<span className="heightValue">{imageSize}</span>px</p>
           </dd>
         </dl>
