@@ -22,8 +22,9 @@ const Setting = styled.div`
       cursor: pointer;
     }
   }
-  .widthValue {
-
+  input[type='range'] {
+    width: 100%;
+    max-width: 600px;
   }
 `;
 
@@ -35,7 +36,6 @@ const Example = styled.div`
   section {
     margin: 30px;
     line-height: 1.75em;
-    /* width: calc(100vw - 120px); */
     h2 {
       color: #000;
       line-height: 1.25em;
@@ -89,24 +89,7 @@ function Inner() {
     <div className="inner">
       <Setting>
         <dl>
-          <dt>
-            向き
-          </dt>
-          <dd>
-            <label><input type="radio" name="direction" value="縦向き" defaultChecked />縦向き</label>
-            <label><input type="radio" name="direction" value="横向き" />横向き</label>
-          </dd>
-          <dt>
-            サイズ
-          </dt>
-          <dd>
-            <label><input type="radio" name="size" value="相対値" />相対値(%)</label>
-            <label><input type="radio" name="size" value="絶対値" defaultChecked />絶対値(px)</label>
-            <input type="range" className="widthValue" min="10"　max={maxSize} defaultValue={imageSize} onChange={ChangeImageSize} />
-            <div>幅：{imageSize}<span className="unit">px</span>、
-            高さ：<span className="heightValue">{imageSize}</span><span className="unit">px</span></div>
-          </dd>
-          <dt>
+        <dt>
           主なアスペクト比
           </dt>
           <dd>
@@ -116,6 +99,20 @@ function Inner() {
             <label><input type="radio" name="aspect" value="デジカメ4:3(1.333:1)" />デジカメ4:3(1.333:1)</label>
             <label><input type="radio" name="aspect" value="デジカメ3:2(1.5:1)" />デジカメ3:2(1.5:1)</label>
             <label><input type="radio" name="aspect" value="デジカメ16:9(1.777:1)" />デジカメ16:9(1.777:1)</label>
+          </dd>
+          <dt>
+            向き
+          </dt>
+          <dd>
+            <label><input type="radio" name="direction" value="横向き" defaultChecked />横向き</label>
+            <label><input type="radio" name="direction" value="縦向き" />縦向き</label>
+          </dd>
+          <dt>
+            サイズ
+          </dt>
+          <dd>
+            <input type="range" className="widthValue" min="10"　max={maxSize} step="5" defaultValue={imageSize} onChange={ChangeImageSize} />
+            <p>幅：{imageSize}px、高さ：<span className="heightValue">{imageSize}</span>px</p>
           </dd>
         </dl>
       </Setting>
