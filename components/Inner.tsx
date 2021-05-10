@@ -57,10 +57,13 @@ const Example = styled.div`
 // Component
 function Inner() {
   const data = Data.inner;
+  const [aspect, setAspect] = useState(data.square[1]);
+  const [direction, setDirection] = useState(data.direction);
   const [step, setStep] = useState(data.step);
   const [width, setWidth] = useState(data.size);
   const [height, setHeight] = useState(data.size);
   const [maxSize, setMaxSize] = useState(data.max);
+
 
   useEffect(() => {
     const windowWidth = document.body.clientWidth;
@@ -73,21 +76,44 @@ function Inner() {
     }
   }, []);
 
+
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue: number = Number(e.target.value);
     return changeValue;
   };
+
+
+  const changeDirection = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let changeValue = useChangeValue(e);
+    console.log(changeValue);
+    setDirection(changeValue);
+    setWidth(width);
+    setHeight(Math.floor( width * aspect));
+  };
+
+
+  const changeAspect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let changeValue = e.target.value;
+    let getValue = data[changeValue][direction];
+    console.log(getValue);
+    setAspect(getValue);
+    setWidth(width);
+    setHeight(Math.floor( width * aspect));
+  };
+
 
   const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue = useChangeValue(e);
     setStep(changeValue);
   };
 
+
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue = useChangeValue(e);
     setWidth(changeValue);
-    setHeight(changeValue);
+    setHeight(Math.floor( width * aspect));
   };
+
 
   const imgStyle = {
     width: width + 'px',
@@ -103,19 +129,19 @@ function Inner() {
           主なアスペクト比
           </dt>
           <dd>
-            <label><input type="radio" name="aspect" value="スクエア(1:1)" defaultChecked />スクエア(1:1)</label>
-            <label><input type="radio" name="aspect" value="白銀比(1.414:1)" />白銀比(1.414:1)</label>
-            <label><input type="radio" name="aspect" value="黄金比(1.618:1)" />黄金比(1.618:1)</label>
-            <label><input type="radio" name="aspect" value="デジカメ4:3(1.333:1)" />デジカメ4:3(1.333:1)</label>
-            <label><input type="radio" name="aspect" value="デジカメ3:2(1.5:1)" />デジカメ3:2(1.5:1)</label>
-            <label><input type="radio" name="aspect" value="デジカメ16:9(1.777:1)" />デジカメ16:9(1.777:1)</label>
+            <label><input type="radio" name="aspect" value="square" onChange={changeAspect} defaultChecked />スクエア(1:1)</label>
+            <label><input type="radio" name="aspect" value="silverRatio" onChange={changeAspect} />白銀比(1.414:1)</label>
+            <label><input type="radio" name="aspect" value="goldenRatio" onChange={changeAspect} />黄金比(1.618:1)</label>
+            <label><input type="radio" name="aspect" value="camera4_3" onChange={changeAspect} />デジカメ4:3(1.333:1)</label>
+            <label><input type="radio" name="aspect" value="camera3_2" onChange={changeAspect} />デジカメ3:2(1.5:1)</label>
+            <label><input type="radio" name="aspect" value="camera16_9" onChange={changeAspect} />デジカメ16:9(1.777:1)</label>
           </dd>
           <dt>
             向き
           </dt>
           <dd>
-            <label><input type="radio" name="direction" value="横向き" defaultChecked />横向き</label>
-            <label><input type="radio" name="direction" value="縦向き" />縦向き</label>
+            <label><input type="radio" name="direction" value="0" onChange={changeDirection} defaultChecked />横向き</label>
+            <label><input type="radio" name="direction" value="1" onChange={changeDirection} />縦向き</label>
           </dd>
           <dt>
             ステップ
@@ -123,7 +149,7 @@ function Inner() {
           <dd>
             <label><input type="radio" name="step" value="1" onChange={changeStep} />1px</label>
             <label><input type="radio" name="step" value="5" onChange={changeStep} />5px</label>
-            <label><input type="radio" name="step" value="10" defaultChecked onChange={changeStep} />10px</label>
+            <label><input type="radio" name="step" value="10" onChange={changeStep} defaultChecked />10px</label>
           </dd>
           <dt>
             サイズ
