@@ -58,16 +58,19 @@ const Example = styled.div`
 function Inner() {
   const data = Data.inner;
   const [step, setStep] = useState(data.step);
-  const [imageSize, setImageSize] = useState(data.size);
+  const [width, setWidth] = useState(data.size);
+  const [height, setHeight] = useState(data.size);
   const [maxSize, setMaxSize] = useState(data.max);
 
   useEffect(() => {
     const windowWidth = document.body.clientWidth;
-    if (900 > windowWidth) {
-      setMaxSize(windowWidth - 120);
-      setImageSize(windowWidth - 120);
-    }
     console.log('windowWidth->' + windowWidth);
+    if (900 > windowWidth) {
+      const resultSize = windowWidth - 120;
+      setMaxSize(resultSize);
+      setWidth(resultSize);
+      setHeight(resultSize);
+    }
   }, []);
 
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,12 +85,13 @@ function Inner() {
 
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue = useChangeValue(e);
-    setImageSize(changeValue);
+    setWidth(changeValue);
+    setHeight(changeValue);
   };
 
   const imgStyle = {
-    width: imageSize + 'px',
-    height: imageSize + 'px'
+    width: width + 'px',
+    height: height + 'px'
   }
 
 
@@ -125,15 +129,15 @@ function Inner() {
             サイズ
           </dt>
           <dd>
-            <input type="range" className="widthValue" min="10"　max={maxSize} step={step} defaultValue={imageSize} onChange={ChangeImageSize} />
-            <p>幅：{imageSize}px、高さ：<span className="heightValue">{imageSize}</span>px</p>
+            <input type="range" className="widthValue" min="10"　max={maxSize} step={step} defaultValue={width} onChange={ChangeImageSize} />
+            <p>幅：{width}px、高さ：{height}px</p>
           </dd>
         </dl>
       </Setting>
       <Example>
         <section>
           <h2>スクエア(1:1)</h2>
-          <p>img {'{'} width: {imageSize}px; height: {imageSize}px; object-fit: cover; {'}'}</p>
+          <p>img {'{'} width: {width}px; height: {height}px; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
         </section>
       </Example>
