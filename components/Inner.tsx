@@ -58,6 +58,7 @@ const Example = styled.div`
 function Inner() {
   const data = Data.inner;
   const [aspect, setAspect] = useState(data.square[1]);
+  const [aspectName, setAspectName] = useState(data.aspectName);
   const [direction, setDirection] = useState(data.direction);
   const [step, setStep] = useState(data.step);
   const [width, setWidth] = useState(data.size);
@@ -94,9 +95,11 @@ function Inner() {
 
   const changeAspect = (e: React.ChangeEvent<HTMLInputElement>) => {
     let changeValue = e.target.value;
+    let changeName = e.target.dataset.label;
     let getValue = data[changeValue][direction];
     console.log(getValue);
     setAspect(getValue);
+    setAspectName(changeName);
     setWidth(width);
     setHeight(Math.floor( width * aspect));
   };
@@ -129,12 +132,12 @@ function Inner() {
           主なアスペクト比
           </dt>
           <dd>
-            <label><input type="radio" name="aspect" value="square" onChange={changeAspect} defaultChecked />スクエア(1:1)</label>
-            <label><input type="radio" name="aspect" value="silverRatio" onChange={changeAspect} />白銀比(1.414:1)</label>
-            <label><input type="radio" name="aspect" value="goldenRatio" onChange={changeAspect} />黄金比(1.618:1)</label>
-            <label><input type="radio" name="aspect" value="camera4_3" onChange={changeAspect} />デジカメ4:3(1.333:1)</label>
-            <label><input type="radio" name="aspect" value="camera3_2" onChange={changeAspect} />デジカメ3:2(1.5:1)</label>
-            <label><input type="radio" name="aspect" value="camera16_9" onChange={changeAspect} />デジカメ16:9(1.777:1)</label>
+            <label><input type="radio" name="aspect" value="square" data-label="スクエア(1:1)" onChange={changeAspect} defaultChecked />スクエア(1:1)</label>
+            <label><input type="radio" name="aspect" value="silverRatio" data-label="白銀比(1.414:1)" onChange={changeAspect} />白銀比(1.414:1)</label>
+            <label><input type="radio" name="aspect" value="goldenRatio" data-label="黄金比(1.618:1)" onChange={changeAspect} />黄金比(1.618:1)</label>
+            <label><input type="radio" name="aspect" value="camera4_3" data-label="デジカメ4:3(1.333:1)" onChange={changeAspect} />デジカメ4:3(1.333:1)</label>
+            <label><input type="radio" name="aspect" value="camera3_2" data-label="デジカメ3:2(1.5:1)" onChange={changeAspect} />デジカメ3:2(1.5:1)</label>
+            <label><input type="radio" name="aspect" value="camera16_9" data-label="デジカメ16:9(1.777:1)" onChange={changeAspect} />デジカメ16:9(1.777:1)</label>
           </dd>
           <dt>
             向き
@@ -162,7 +165,7 @@ function Inner() {
       </Setting>
       <Example>
         <section>
-          <h2>スクエア(1:1)</h2>
+          <h2>{aspectName}</h2>
           <p>img {'{'} width: {width}px; height: {height}px; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
         </section>
