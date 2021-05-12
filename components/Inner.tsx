@@ -79,14 +79,14 @@ function Inner() {
 
 
   const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let changeValue: number = Number(e.target.value);
-    return changeValue;
+    const getValue: number = Number(e.target.value);
+    return getValue;
   };
 
 
   const changeDirection = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let changeValue = e.target.value;
-    const changeDirection = data.direction[changeValue];
+    const getValue = e.target.value;
+    const changeDirection = data.direction[getValue];
     console.log("changeDirection->" + changeDirection);
     setDirection(changeDirection);
     setHeight(Math.floor( width / aspectRatio));
@@ -94,9 +94,9 @@ function Inner() {
 
 
   const changeAspect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changeValue = e.target.value;
-    const changeName = data.aspect[changeValue].name;
-    const changeRatio = data.aspect[changeValue].ratio;
+    const getValue = e.target.value;
+    const changeName = data.aspect[getValue].name;
+    const changeRatio = data.aspect[getValue].ratio;
     setAspectRatio(changeRatio);
     setAspectName(changeName);
     setHeight(Math.floor( width / changeRatio));
@@ -104,15 +104,15 @@ function Inner() {
 
 
   const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let changeValue = useChangeValue(e);
-    setStep(changeValue);
+    const getValue = useChangeValue(e);
+    setStep(getValue);
   };
 
 
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let changeValue = useChangeValue(e);
-    setWidth(changeValue);
-    setHeight(Math.floor( width / aspectRatio));
+    const getValue = useChangeValue(e);
+    setWidth(getValue);
+    setHeight(Math.floor( getValue / aspectRatio));
   };
 
 
