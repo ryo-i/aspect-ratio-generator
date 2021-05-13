@@ -68,7 +68,6 @@ function Inner() {
 
   useEffect(() => {
     const windowWidth = document.body.clientWidth;
-    console.log('windowWidth->' + windowWidth);
     if (900 > windowWidth) {
       const resultSize = windowWidth - 120;
       setMaxSize(resultSize);
@@ -78,18 +77,26 @@ function Inner() {
   }, []);
 
 
-  const useChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const useGetNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const getValue: number = Number(e.target.value);
     return getValue;
   };
 
 
+  const useGetHeight = (width: number, ratio: number, direction: string) => {
+    if (direction === '横') {
+      return Math.floor(width / ratio);
+    } else if (direction === '縦') {
+      return Math.floor(width * ratio);
+    }
+  };
+
   const changeDirection = (e: React.ChangeEvent<HTMLInputElement>) => {
     const getValue = e.target.value;
     const changeDirection = data.direction[getValue];
-    console.log("changeDirection->" + changeDirection);
+    const changeHeight = useGetHeight(width, aspectRatio, changeDirection);
     setDirection(changeDirection);
-    setHeight(Math.floor( width / aspectRatio));
+    setHeight(changeHeight);
   };
 
 
@@ -97,22 +104,24 @@ function Inner() {
     const getValue = e.target.value;
     const changeName = data.aspect[getValue].name;
     const changeRatio = data.aspect[getValue].ratio;
+    const changeHeight = useGetHeight(width, changeRatio, direction);
     setAspectRatio(changeRatio);
     setAspectName(changeName);
-    setHeight(Math.floor( width / changeRatio));
+    setHeight(changeHeight);
   };
 
 
   const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const getValue = useChangeValue(e);
+    const getValue = useGetNumber(e);
     setStep(getValue);
   };
 
 
   const ChangeImageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const getValue = useChangeValue(e);
+    const getValue = useGetNumber(e);
+    const changeHeight = useGetHeight(getValue, aspectRatio, direction);
     setWidth(getValue);
-    setHeight(Math.floor( getValue / aspectRatio));
+    setHeight(changeHeight);
   };
 
 
