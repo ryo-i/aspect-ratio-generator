@@ -29,15 +29,24 @@ const GlobalStyle = createGlobalStyle`
     section {
       margin: 30px 0;
     }
-    h1, h2, p, figure, ul, table {
+    h1, h2, h3, h4, h5, h6, p, figure, ul, ol, dl, table {
       margin: 0 0 10px;
     }
-    h1, h2 {
+    h1, h2, h3, h4, h5, h6 {
       line-height: 1.25;
     }
     p {
       line-height: 1.75;
       margin: 0 0 10px;
+    }
+    ul, ol {
+      padding: 0 0 0 1.5em;
+    }
+    dt {
+      font-weight: bold;
+    }
+    dd {
+      margin: 0 0 1em;
     }
   }
   main {

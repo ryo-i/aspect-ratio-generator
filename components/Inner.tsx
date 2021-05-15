@@ -6,15 +6,7 @@ import Data from '../data/data.json';
 // Style
 const Setting = styled.div`
   margin: 30px 0;
-  dt {
-    font-weight: bold;
-    .css {
-      font-weight: normal;
-    }
-  }
-  dd {
-    margin: 0 0 1em;
-  }
+
   label {
     margin: 0 1em 0 0;
     display: inline-block;
@@ -173,8 +165,8 @@ function Inner() {
       <Example>
         <section>
           <h2>{aspectName + "(1:" + aspectRatio + " " + direction + "向き)"}</h2>
-          <p>img {'{'} width: {width}px; height: {height}px; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
+          <p>CSS設定 {'{'} width: {width}px; height: {height}px; object-fit: cover; {'}'}</p>
         </section>
       </Example>
     </div>
