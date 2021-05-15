@@ -74,6 +74,11 @@ function About() {
                     </section>
                 </section>
             </section>
+            <section>
+                <h2>GitHub</h2>
+                <p>このアプリのリポジトリ</p>
+                <p><a href="https://github.com/ryo-i/aspect-ratio-generator">aspect-ratio-generator</a></p>
+            </section>
             <Profile />
         </main>
         <Footer />
