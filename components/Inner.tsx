@@ -147,32 +147,32 @@ function Inner() {
             <label><input type="radio" name="aspect" value="camera16_9" onChange={changeAspect} />デジカメ16:9(1.777:1)</label>
           </dd>
           <dt>
-            向き
+            画像の向き
           </dt>
           <dd>
             <label><input type="radio" name="direction" value="horizontal" onChange={changeDirection} defaultChecked />横向き</label>
             <label><input type="radio" name="direction" value="vertical" onChange={changeDirection} />縦向き</label>
           </dd>
           <dt>
-            ステップ
+            画像サイズ
+          </dt>
+          <dd>
+            <input type="range" className="widthValue" min="10"　max={maxSize} step={step} defaultValue={width} onChange={ChangeImageSize} />
+            <p>幅：{width}px、高さ：{height}px</p>
+          </dd>
+          <dt>
+            サイズ(幅)の刻み
           </dt>
           <dd>
             <label><input type="radio" name="step" value="1" onChange={changeStep} />1px</label>
             <label><input type="radio" name="step" value="5" onChange={changeStep} />5px</label>
             <label><input type="radio" name="step" value="10" onChange={changeStep} defaultChecked />10px</label>
           </dd>
-          <dt>
-            サイズ
-          </dt>
-          <dd>
-            <input type="range" className="widthValue" min="10"　max={maxSize} step={step} defaultValue={width} onChange={ChangeImageSize} />
-            <p>幅：{width}px、高さ：{height}px</p>
-          </dd>
         </dl>
       </Setting>
       <Example>
         <section>
-          <h2>{aspectName + "(1:" + aspectRatio + " " + direction + ")"}</h2>
+          <h2>{aspectName + "(1:" + aspectRatio + " " + direction + "向き)"}</h2>
           <p>img {'{'} width: {width}px; height: {height}px; object-fit: cover; {'}'}</p>
           <figure><img src="/kaidan.jpg"  style={imgStyle}/></figure>
         </section>
