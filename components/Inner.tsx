@@ -125,6 +125,7 @@ function Inner() {
   }
 
 
+  // JSX
   return (
     <div className="inner">
       <Setting>
