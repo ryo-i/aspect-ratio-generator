@@ -83,14 +83,6 @@ function Inner() {
     }
   };
 
-  const changeDirection = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const getValue = e.target.value;
-    const changeDirection = data.direction[getValue];
-    const changeHeight = useGetHeight(width, aspectRatio, changeDirection);
-    setDirection(changeDirection);
-    setHeight(changeHeight);
-  };
-
 
   const changeAspect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const getValue = e.target.value;
@@ -103,9 +95,12 @@ function Inner() {
   };
 
 
-  const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const getValue = useGetNumber(e);
-    setStep(getValue);
+  const changeDirection = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getValue = e.target.value;
+    const changeDirection = data.direction[getValue];
+    const changeHeight = useGetHeight(width, aspectRatio, changeDirection);
+    setDirection(changeDirection);
+    setHeight(changeHeight);
   };
 
 
@@ -117,6 +112,13 @@ function Inner() {
   };
 
 
+  const changeStep = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getValue = useGetNumber(e);
+    setStep(getValue);
+  };
+
+
+  // Change CSS
   const imgStyle = {
     width: width + 'px',
     height: height + 'px'
