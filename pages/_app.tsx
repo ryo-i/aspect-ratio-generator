@@ -62,6 +62,9 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.5em;
       color: ${variable.baseColor};
     }
+    h3 {
+      font-size: 1.25em;
+    }
   }
 `;
 

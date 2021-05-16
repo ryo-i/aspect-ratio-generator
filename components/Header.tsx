@@ -18,7 +18,7 @@ const HeaderTag = styled.header`
     ${pageSize}
     padding: 30px;
   }
-  h2 {
+  h1 {
     font-size: 2em;
   }
   nav span, nav a {
@@ -32,7 +32,7 @@ function Header() {
   return (
     <HeaderTag>
       <div className="wrapper">
-        <h2>{ title }</h2>
+        <h1>{ title }</h1>
         <p dangerouslySetInnerHTML={{ __html: text }}></p>
         <nav>
           <span>MENU:</span>

@@ -6,7 +6,6 @@ import Data from '../data/data.json';
 // Style
 const Setting = styled.div`
   margin: 30px 0;
-
   label {
     margin: 0 1em 0 0;
     display: inline-block;
