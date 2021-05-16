@@ -56,10 +56,10 @@ const GlobalStyle = createGlobalStyle`
       padding: 30px 30px 0;
     }
     h1 {
-      font-size: 1.5em;
+      font-size: 1.75em;
     }
     h2 {
-      font-size: 1.25em;
+      font-size: 1.5em;
       color: ${variable.baseColor};
     }
   }

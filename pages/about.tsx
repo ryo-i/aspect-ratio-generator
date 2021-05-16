@@ -75,9 +75,15 @@ function About() {
                 </section>
             </section>
             <section>
-                <h2>GitHub</h2>
-                <p>このアプリのリポジトリ</p>
-                <p><a href="https://github.com/ryo-i/aspect-ratio-generator">aspect-ratio-generator</a></p>
+                <h2>詳細</h2>
+                <section>
+                    <h3>ブログ</h3>
+                    <p><a href="https://www.i-ryo.com/entry/2021/05/16/180207">【React】アスペクト比ジェネレーターを作った（画像の縦横比率を計算するツール） - クモのようにコツコツと</a></p>
+                </section>
+                <section>
+                    <h3>ソースコード（GitHub）</h3>
+                    <p><a href="https://github.com/ryo-i/aspect-ratio-generator">aspect-ratio-generator</a></p>
+                </section>
             </section>
             <Profile />
         </main>
